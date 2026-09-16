@@ -1,0 +1,65 @@
+📚 Student Instructions: Groq Model Switching Exercise
+
+WHAT YOU'RE BUILDING
+
+You're going to build a LangChain-Groq integration system that can:
+
+🔐 Manage API keys securely
+
+🔄 Switch between different Groq models
+
+💬 Send queries to AI models
+
+This simulates how you'd work with the real langchain-groq package in production! 🚀
+
+🚀 GETTING STARTED
+
+Step 1: Understand the Exercise Structure
+
+exercise.py - Your main working file (this is where you code!)
+
+hints tab- Complete reference (only look after you're done!)
+
+Mock classes\*- Simulate real LangChain behavior (already provided)
+
+Step 2: Find Your Tasks
+
+Look for functions that start with implement\_ - these are your functions to complete:
+
+implement_set_api_key()
+
+implement_llama_4_model()
+
+implement_llama_3_3_model()
+
+implement_query_model()
+
+💡 IMPORTANT CONCEPTS
+
+**Model Names** 🏷️
+
+• Must be exact: "llama-4-8b-instant" ✅ vs "llama-4" ❌
+
+• Source: Get real names from console.groq.com
+
+• Case sensitive: Capital letters matter!
+
+**Temperature Settings** 🌡️
+
+Low (0.0): Predictable, consistent responses
+
+Medium (0.3): Balance of consistency and creativity
+
+High (1.0): Very creative, unpredictable responses
+
+**LangChain Message Format** 💬
+
+Structure: List of tuples
+
+Format: [("human", "your question here")]
+
+Role types: "human", "assistant", "system"
+
+Next steps: Apply these same patterns with real `langchain-groq` in production projects! 🚀
+
+🌟 \*Good luck! Remember: the goal is understanding, not just passing tests. Take time to understand why each piece works the way it does. 💡

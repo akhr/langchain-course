@@ -218,3 +218,11 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Cursor Workspace
+*.code-workspace
+
+# VS Code settings
+.vscode
+
+.claude

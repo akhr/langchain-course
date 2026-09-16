@@ -10,7 +10,9 @@ requires-python = ">=3.13"
 dependencies = [
     "black>=26.5.1",
     "isort>=9.0.1",
+    "krylov-pychomsky>=1.0.0",
     "langchain>=1.4.0",
+    "langchain-anthropic>=1.7.2",
     "langchain-ollama>=1.1.0",
     "langchain-openai>=1.6.2",
     "python-dotenv>=1.2.3",
@@ -22,3 +24,34 @@ langchain-course = "langchain_course:main"
 [build-system]
 requires = ["uv_build>=0.12.13,<0.13.0"]
 build-backend = "uv_build"
+
+[tool.uv]
+index-url = "https://artifactory.corp.ebay.com/artifactory/api/pypi/PyPI/simple"
+
+[tool.uv.sources]
+krylov-pychomsky = { index = "pypi-coreai" }
+
+[[tool.uv.index]]
+name = "pypi-coreai"
+url = "https://artifactory.corp.ebay.com/artifactory/api/pypi/pypi-coreai/simple"
+explicit = true
+
+# [tool.uv.sources]
+# # pykrylov = { index = "pypi-krylov" }
+# krylov-pychomsky = { index = "pypi-coreai" }
+# aiagent-ebay = { index = "ebay-pypi" }
+
+# [[tool.uv.index]]
+# name = "ebay-pypi"
+# url = "https://artifactory.corp.ebay.com/artifactory/api/pypi/PyPI/simple"
+# explicit = true
+
+# [[tool.uv.index]]
+# name = "pypi-krylov"
+# url = "https://artifactory.corp.ebay.com/artifactory/api/pypi/pypi-krylov/simple"
+# explicit = true
+
+# [[tool.uv.index]]
+# name = "pypi-coreai"
+# url = "https://artifactory.corp.ebay.com/artifactory/api/pypi/pypi-coreai/simple"
+# explicit = true

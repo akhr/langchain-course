@@ -18,26 +18,28 @@ llm = GCPVertexAnthropicChatWrapper(
     debug=True,
 )
 toolList = [tavily_search]
-agent = create_agent(
-    model = llm,
-    tools = toolList)
+agent = create_agent(model=llm, tools=toolList)
+
 
 def main() -> None:
     print("Hello from langchain-course!")
-    response = agent.invoke({"messages": [HumanMessage(content=
-                                                       """ search for 3 job postings for an ai engineer
+    response = agent.invoke(
+        {
+            "messages": [
+                HumanMessage(content=""" search for 3 job postings for an ai engineer
                                                        using langchain in the bay area on linkedin and
-                                                       list their details"""
-                                                       )
-                                          ]
-                             }
-                            )
+                                                       list their details""")
+            ]
+        }
+    )
     print_response(response)
+
 
 def print_response(response: dict) -> None:
     for m in response["messages"]:
         m.pretty_print()
         print("\n")
+
 
 if __name__ == "__main__":
     main()

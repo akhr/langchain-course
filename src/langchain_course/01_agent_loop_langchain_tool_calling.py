@@ -51,6 +51,17 @@ def run_agent_loop(question: str):
     print(f"Starting the agent loop for the user's question: {question}")
     print("-" * 30)
 
+    tools = [get_product_price, apply_discount]
+    tools_dict = {t.name: t for t in tools}
+
+
+def get_llm_with_tools(tools: list[BaseTool]) -> BaseChatModel:
+    llm = init_chat_model(
+        model=f"ollama:{MODEL}",
+        temperature=0.0
+    )
+    llm_with_tools = llm.bind_tools(tools=tools)
+    return llm
 
 
 if __name__ == "__main__":

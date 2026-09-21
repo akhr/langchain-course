@@ -12,6 +12,7 @@ dependencies = [
     "isort>=9.0.1",
     "krylov-pychomsky>=1.0.0",
     "langchain>=1.4.1",
+    "langchain-ollama>=1.1.0",
     "langchain-openai>=1.6.2",
     "langchain-tavily>=0.2.18",
     "pydantic>=2.13.5",

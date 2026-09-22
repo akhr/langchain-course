@@ -106,6 +106,8 @@ def run_agent_loop(question: str):
         tool_args = tool_call.get("args")
         tool_call_id = tool_call.get("id")
 
+        print(f"  [Tool Selected] {tool_name} with args: {tool_args}")
+
         # Get the tool to use and execute the tool
         tool_to_use = tools_dict[tool_name]
         if tool_to_use is None:

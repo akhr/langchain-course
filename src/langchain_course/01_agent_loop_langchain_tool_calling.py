@@ -10,6 +10,8 @@ from langsmith import traceable
 
 # MODEL="gcp-chat-completions-anthropic-claude-sonnet-4.6-sandbox"
 MODEL = "gpt-oss:20b"
+# MODEL = "llama3.1:latest"
+# MODEL = "gemma3:270m" - Does not support tool calling
 MAX_ITERATIONS = 5
 
 
@@ -64,8 +66,9 @@ def run_agent_loop(question: str):
                     - get_product_price: to get the price of a product
                     - apply_discount: to apply a discount to the product
                     STRICTLY the below instructions:
-                    - Call apply_discount tool only after getting the price of the product.
-                    - Pass the exact price to the apply_discount tool. Do not round the price or guess the price.
+                    - Call apply_discount tool only after getting the price from get_product_price tool.
+                    - Do not skip tools. Always call the tools in the order they are provided in the system message.
+                    - Pass the exact price from get_product_price tool to the apply_discount tool.
                     - Do not guess product price or discount tier. Always use the tools to answer the question.
                     - Never calculate the price or discount tier yourself. Always use the tools to answer the question.
                     - If the question is not related to the product catalog, say you don't know

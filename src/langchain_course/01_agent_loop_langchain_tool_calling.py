@@ -87,7 +87,7 @@ def run_agent_loop(question: str):
     llm = get_llm(tools)
     llm_with_tools = llm.bind_tools(tools=tools)
 
-    # Agent Loop 
+    # Agent Loop
     for iteration in range(1, MAX_ITERATIONS + 1):
         print(f"\n-----Iteration {iteration} -----")
 
@@ -134,5 +134,5 @@ def get_llm(tools: list[BaseTool]) -> BaseChatModel:
 if __name__ == "__main__":
     print("Hello Langchain Agent (.bind_tools())")
     print("=" * 60)
-    run_agent_loop(question= "what is the price of a laptop with a gold discount?")
+    run_agent_loop(question="what is the price of a laptop with a gold discount?")
     print("=" * 60)

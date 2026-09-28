@@ -11,8 +11,7 @@ MAX_ITERATIONS = 5
 
 @traceable(name="get_product_price", run_type="tool")
 def get_product_price(product: str) -> str:
-    """Get the price of a product from the catalog
-    """
+    """Get the price of a product from the catalog"""
     print(f"    >> Executing tool: get_product_price: Getting price for {product}")
     catalog = {
         "laptop": 1299.99,
@@ -102,6 +101,7 @@ tools_for_llm = [
 def ollama_chat_traced(messages):
     return ollama.chat(model=MODEL, tools=tools_for_llm, messages=messages)
 
+
 # --- Agent Loop ---
 @traceable(name="Ollama Agent Loop")
 def run_agent_loop(question: str):
@@ -112,8 +112,8 @@ def run_agent_loop(question: str):
 
     messages = [
         {
-         "role": "system",
-         "content": """You are a helpful assistant that can answer questions about the product catalog
+            "role": "system",
+            "content": """You are a helpful assistant that can answer questions about the product catalog
                     and apply discounts to the products. You have access to the following tools:
                     - get_product_price: to get the price of a product
                     - apply_discount: to apply a discount to the product
@@ -130,20 +130,17 @@ def run_agent_loop(question: str):
                     - If the price is not a number, say invalid price. Ask user to provide a valid price.
                     - Always provide the final price in the response.
                     - When calling tools, always use the exact tool name and arguments as provided in the tool description.
-                """
+                """,
         },
-        {
-            "role": "user",
-            "content": question
-        },
+        {"role": "user", "content": question},
     ]
-
 
     # ----- Agent Loop -----
     for iteration in range(1, MAX_ITERATIONS + 1):
         print(f"\n-----Iteration {iteration} -----")
 
         # Invoke the LLM with the messages
+        print(f"Iteration {iteration} - messages sent to LLM: ", messages)
         response = ollama_chat_traced(messages=messages)
         ai_message = response.message
 
@@ -161,7 +158,6 @@ def run_agent_loop(question: str):
 
         print(f"  [Tool Selected] {tool_name} with args: {tool_args}")
 
-
         # Get the tool to use and execute the tool
         tool_to_use = tools_dict[tool_name]
         if tool_to_use is None:
@@ -173,17 +169,15 @@ def run_agent_loop(question: str):
 
         # Update the messages with llm and tool response
         messages.append(ai_message)
-        messages.append({
-            "role": "tool",
-            "content": str(observation)
-        })
+        messages.append({"role": "tool", "content": str(observation)})
 
         # continue the loop
     print("ERROR: MAX_ITERATION limit reached with no final answer")
     return None
 
+
 if __name__ == "__main__":
     print("Hello Langchain Agent (.bind_tools())")
     print("=" * 60)
-    run_agent_loop(question= "what is the price of a laptop with a gold discount?")
+    run_agent_loop(question="what is the price of a laptop with a bronze discount?")
     print("=" * 60)
